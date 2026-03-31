@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de consolidación de deudas. Compara tu situación actual vs consolidada y ahorra dinero unificando tus préstamos.">
+    <meta name="keywords" content="consolidar deudas calculadora, unificar préstamos, consolidación deudas, ahorro consolidación, refinanciar deudas">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Consolidación de Deudas - CalcPrestamo">
+    <meta property="og:description" content="Calcula cuánto puedes ahorrar consolidando tus deudas en un solo préstamo.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora Consolidación de Deudas - CalcPrestamo">
+    
+    <title>Calculadora de Consolidación de Deudas | CalcPrestamo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de Consolidación de Deudas",
+      "description": "Calcula cómo consolidar múltiples deudas en un solo préstamo con cuota mensual reducida",
+      "url": "https://tudominio.online/consolidacion.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://tudominio.online/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadora Consolidación Deudas",
+        "item": "https://tudominio.online/consolidacion.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="prestamo-personal.html">Calculadoras</a>
+                <a href="about.html">Acerca de</a>
+                <a href="contact.html">Contacto</a>
+                <div class="language-switcher">
+                    <button class="lang-btn lang-active" onclick="window.location.href='consolidacion.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn" onclick="window.location.href='en/debt-consolidation.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>→</span>
+                <span>Calculadora Consolidación</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>📊 Calculadora de Consolidación de Deudas</h2>
+                <p>Compara tu situación actual vs consolidada y descubre cuánto puedes ahorrar</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Tus Deudas Actuales</h3>
+                
+                <div class="calculator-form">
+                    <div class="debt-list" id="debtList">
+                        <!-- Las deudas se agregarán dinámicamente aquí -->
+                    </div>
+
+                    <button onclick="addDebt()" class="add-debt-btn">➕ Agregar Deuda</button>
+
+                    <hr style="margin: 30px 0; border: 1px solid #e2e8f0;">
+
+                    <h4 style="margin-bottom: 15px; font-size: 1.4rem;">Nuevo Préstamo Consolidado</h4>
+
+                    <div class="form-group">
+                        <label for="newRate">📊 Nueva Tasa de Interés Anual (%)</label>
+                        <input type="number" id="newRate" placeholder="8.5" value="8.5" min="0" step="0.1">
+                        <small>Tasa del préstamo consolidado</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newTerm">⏱️ Nuevo Plazo (meses)</label>
+                        <input type="number" id="newTerm" placeholder="60" value="60" min="1" step="1">
+                        <small>Duración del nuevo préstamo</small>
+                    </div>
+
+                    <button onclick="calculateConsolidation()" class="btn-calculate">📊 Calcular Consolidación</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Comparación</h3>
+                
+                <!-- Comparison Cards -->
+                <div class="comparison-grid">
+                    <div class="comparison-card before">
+                        <h4>❌ Situación Actual</h4>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Cuota Mensual Total:</span>
+                            <span class="comparison-value" id="beforeMonthly">€0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total a Pagar:</span>
+                            <span class="comparison-value" id="beforeTotal">€0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total Intereses:</span>
+                            <span class="comparison-value" id="beforeInterest">€0</span>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card after winner">
+                        <h4>✅ Después de Consolidar</h4>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Nueva Cuota Mensual:</span>
+                            <span class="comparison-value" id="afterMonthly">€0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total a Pagar:</span>
+                            <span class="comparison-value" id="afterTotal">€0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total Intereses:</span>
+                            <span class="comparison-value" id="afterInterest">€0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Savings Alert -->
+                <div id="savingsAlert"></div>
+
+                <!-- Savings Cards -->
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Ahorro Mensual</h3>
+                        <div class="amount" id="monthlySavings">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Ahorro Total</h3>
+                        <div class="amount" id="totalSavings">€0</div>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Comparación Visual</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="consolidationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Amortization Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>📋 Tabla de Amortización (Consolidado)</h3>
+                        <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="amortization-table" id="amortizationTable">
+                            <thead>
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Cuota</th>
+                                    <th>Capital</th>
+                                    <th>Intereses</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Información Útil</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 ¿Qué es la Consolidación?</h3>
+                        <ul>
+                            <li>Unifica múltiples deudas en una sola</li>
+                            <li>Una única cuota mensual</li>
+                            <li>Generalmente tasa más baja</li>
+                            <li>Simplifica la gestión financiera</li>
+                            <li>Puede reducir el pago mensual</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>✅ Ventajas de Consolidar</h3>
+                        <ul>
+                            <li>Ahorro en intereses</li>
+                            <li>Menor cuota mensual</li>
+                            <li>Un solo acreedor</li>
+                            <li>Mejor organización</li>
+                            <li>Menos estrés financiero</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Consideraciones Importantes</h3>
+                        <ul>
+                            <li>Verifica comisiones de apertura</li>
+                            <li>Compara tasas de múltiples bancos</li>
+                            <li>Evalúa el plazo total</li>
+                            <li>No acumules nuevas deudas</li>
+                            <li>Considera tu capacidad de pago</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Otras Calculadoras</h3>
+                <div class="related-grid">
+                    <a href="prestamo-personal.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Préstamo Personal</h4>
+                        <p>Calcula préstamos e hipotecas</p>
+                    </a>
+                    <a href="refinanciacion.html" class="related-card">
+                        <span class="icon">🔄</span>
+                        <h4>Refinanciación</h4>
+                        <p>Mejora tu préstamo actual</p>
+                    </a>
+                    <a href="negocio.html" class="related-card">
+                        <span class="icon">💼</span>
+                        <h4>Préstamo Negocio</h4>
+                        <p>Financia tu empresa</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Calculadoras financieras gratuitas para tomar mejores decisiones con tu dinero.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculadoras</h4>
+                    <ul>
+                        <li><a href="prestamo-personal.html">Préstamo Personal</a></li>
+                        <li><a href="auto.html">Préstamo Auto</a></li>
+                        <li><a href="consolidacion.html">Consolidación</a></li>
+                        <li><a href="ahorro.html">Ahorro</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="consolidacion.js"></script>
+    <script src="cookie-consent.js"></script>
+</body>
+</html>

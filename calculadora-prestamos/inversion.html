@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de inversión y ROI. Calcula el retorno de tu inversión con rendimientos compuestos y proyecciones a largo plazo.">
+    <meta name="keywords" content="calculadora inversión, ROI, retorno inversión, rendimiento inversión, proyección inversión">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Inversión ROI - CalcPrestamo">
+    <meta property="og:description" content="Calcula el retorno de tu inversión con proyecciones a 5, 10, 20 y 30 años.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora Inversión ROI - CalcPrestamo">
+    
+    <title>Calculadora de Inversión ROI | CalcPrestamo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de Retorno de Inversión (ROI)",
+      "description": "Calcula el retorno de inversión, ganancias y rendimiento porcentual de tus inversiones",
+      "url": "https://tudominio.online/inversion.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://tudominio.online/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadora de Inversión",
+        "item": "https://tudominio.online/inversion.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="prestamo-personal.html">Calculadoras</a>
+                <a href="about.html">Acerca de</a>
+                <a href="contact.html">Contacto</a>
+                <div class="language-switcher">
+                    <button class="lang-btn lang-active" onclick="window.location.href='inversion.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn" onclick="window.location.href='en/investment.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>→</span>
+                <span>Calculadora Inversión ROI</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>📈 Calculadora de Inversión y ROI</h2>
+                <p>Calcula el retorno de tu inversión con proyecciones a largo plazo</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Datos de Inversión</h3>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="initialInvestment">💵 Inversión Inicial (€)</label>
+                        <input type="number" id="initialInvestment" placeholder="10000" value="10000" min="0" step="100">
+                        <small>Cantidad que invertirás inicialmente</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyContribution">📅 Aportación Mensual (€)</label>
+                        <input type="number" id="monthlyContribution" placeholder="500" value="500" min="0" step="50">
+                        <small>Cantidad adicional que invertirás cada mes</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="annualReturn">📊 Rendimiento Anual Esperado (%)</label>
+                        <input type="number" id="annualReturn" placeholder="7" value="7" min="0" step="0.1">
+                        <small>Rentabilidad anual promedio esperada</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="years">⏱️ Período de Inversión (años)</label>
+                        <input type="number" id="years" placeholder="20" value="20" min="1" max="50" step="1">
+                        <small>Tiempo que mantendrás la inversión</small>
+                    </div>
+
+                    <button onclick="calculateInvestment()" class="btn-calculate">📈 Calcular ROI</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Resultados</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Valor Final</h3>
+                        <div class="amount" id="finalValue">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Invertido</h3>
+                        <div class="amount" id="totalInvested">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Ganancias</h3>
+                        <div class="amount" id="totalGains">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>ROI Total</h3>
+                        <div class="amount" id="roiPercent">0%</div>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Crecimiento de la Inversión</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Projections Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>📋 Proyecciones a Largo Plazo</h3>
+                        <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="amortization-table" id="investmentTable">
+                            <thead>
+                                <tr>
+                                    <th>Período</th>
+                                    <th>Invertido</th>
+                                    <th>Ganancias</th>
+                                    <th>Valor Total</th>
+                                    <th>ROI</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Información Útil</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 ¿Qué es el ROI?</h3>
+                        <ul>
+                            <li>Return On Investment (retorno de inversión)</li>
+                            <li>Mide la rentabilidad de una inversión</li>
+                            <li>Se expresa en porcentaje</li>
+                            <li>Compara ganancias vs inversión inicial</li>
+                            <li>Fundamental para decisiones financieras</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 Rendimientos Típicos</h3>
+                        <ul>
+                            <li>Bonos: 3-5% anual</li>
+                            <li>Acciones: 7-10% anual (largo plazo)</li>
+                            <li>Fondos indexados: 8-12% anual</li>
+                            <li>Real estate: 8-10% anual</li>
+                            <li>Alto riesgo = alto rendimiento</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Consejos de Inversión</h3>
+                        <ul>
+                            <li>Diversifica tu portafolio</li>
+                            <li>Invierte a largo plazo</li>
+                            <li>Considera tu tolerancia al riesgo</li>
+                            <li>Reinvierte los dividendos</li>
+                            <li>Revisa regularmente tus inversiones</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Otras Calculadoras</h3>
+                <div class="related-grid">
+                    <a href="ahorro.html" class="related-card">
+                        <span class="icon">💰</span>
+                        <h4>Ahorro</h4>
+                        <p>Calcula tu ahorro futuro</p>
+                    </a>
+                    <a href="prestamo-personal.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Préstamo Personal</h4>
+                        <p>Calcula préstamos</p>
+                    </a>
+                    <a href="negocio.html" class="related-card">
+                        <span class="icon">💼</span>
+                        <h4>Préstamo Negocio</h4>
+                        <p>Financia tu empresa</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Calculadoras financieras gratuitas para tomar mejores decisiones con tu dinero.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculadoras</h4>
+                    <ul>
+                        <li><a href="prestamo-personal.html">Préstamo Personal</a></li>
+                        <li><a href="auto.html">Préstamo Auto</a></li>
+                        <li><a href="ahorro.html">Ahorro</a></li>
+                        <li><a href="inversion.html">Inversión</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="inversion.js"></script>
+    <script src="cookie-consent.js"></script>
+</body>
+</html>

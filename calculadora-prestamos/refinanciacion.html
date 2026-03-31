@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de refinanciación de préstamos. Compara tu préstamo actual vs refinanciado y descubre si vale la pena.">
+    <meta name="keywords" content="calculadora refinanciación, refinanciar préstamo, comparar préstamos, ahorrar intereses, punto equilibrio">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Refinanciación - CalcPrestamo">
+    <meta property="og:description" content="Compara tu préstamo actual vs refinanciado para saber si vale la pena.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Refinanciación - CalcPrestamo">
+    
+    <title>Calculadora de Refinanciación de Préstamos | CalcPrestamo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de Refinanciación de Hipoteca",
+      "description": "Calcula si te conviene refinanciar tu hipoteca y cuánto puedes ahorrar mensualmente",
+      "url": "https://tudominio.online/refinanciacion.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://tudominio.online/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadora Refinanciación",
+        "item": "https://tudominio.online/refinanciacion.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="prestamo-personal.html">Calculadoras</a>
+                <a href="about.html">Acerca de</a>
+                <a href="contact.html">Contacto</a>
+                <div class="language-switcher">
+                    <button class="lang-btn lang-active" onclick="window.location.href='refinanciacion.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn" onclick="window.location.href='en/refinancing.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>→</span>
+                <span>Calculadora Refinanciación</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>🔄 Calculadora de Refinanciación</h2>
+                <p>Compara tu préstamo actual vs refinanciado y descubre si vale la pena</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Comparación de Préstamos</h3>
+                
+                <div class="calculator-form">
+                    <h4 style="color: #667eea; margin-bottom: 1rem;">📊 Préstamo Actual</h4>
+                    
+                    <div class="form-group">
+                        <label for="currentBalance">💵 Saldo Actual (€)</label>
+                        <input type="number" id="currentBalance" placeholder="30000" value="30000" min="0" step="100">
+                        <small>Cantidad que aún debes</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentRate">📊 Tasa Actual (%)</label>
+                        <input type="number" id="currentRate" placeholder="8.5" value="8.5" min="0" step="0.1">
+                        <small>Tasa de interés actual</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remainingMonths">⏱️ Meses Restantes</label>
+                        <input type="number" id="remainingMonths" placeholder="48" value="48" min="1" step="1">
+                        <small>Meses que faltan para terminar</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentPayment">💳 Cuota Mensual Actual (€)</label>
+                        <input type="number" id="currentPayment" placeholder="750" value="750" min="0" step="10">
+                        <small>Lo que pagas actualmente</small>
+                    </div>
+
+                    <hr style="margin: 2rem 0; border: none; border-top: 2px solid #e2e8f0;">
+
+                    <h4 style="color: #48bb78; margin-bottom: 1rem;">🆕 Préstamo Refinanciado</h4>
+
+                    <div class="form-group">
+                        <label for="newRate">📊 Nueva Tasa (%)</label>
+                        <input type="number" id="newRate" placeholder="6.5" value="6.5" min="0" step="0.1">
+                        <small>Tasa del nuevo préstamo</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newMonths">⏱️ Nuevo Plazo (meses)</label>
+                        <input type="number" id="newMonths" placeholder="60" value="60" min="1" step="1">
+                        <small>Duración del nuevo préstamo</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="refinancingCosts">💰 Costos de Refinanciación (€)</label>
+                        <input type="number" id="refinancingCosts" placeholder="500" value="500" min="0" step="50">
+                        <small>Comisiones y gastos de trámite</small>
+                    </div>
+
+                    <button onclick="calculateRefinancing()" class="btn-calculate">🔄 Comparar Préstamos</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Resultados de la Comparación</h3>
+                
+                <!-- Recommendation Alert -->
+                <div id="recommendationAlert" class="alert-box" style="display: none;">
+                    <strong id="recommendationTitle"></strong> <span id="recommendationMessage"></span>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Ahorro Mensual</h3>
+                        <div class="amount" id="monthlySavings">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Ahorro Total</h3>
+                        <div class="amount" id="totalSavings">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Punto de Equilibrio</h3>
+                        <div class="amount" id="breakEvenMonths">0 meses</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Nueva Cuota</h3>
+                        <div class="amount" id="newPayment">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Costos de Refinanciar</h3>
+                        <div class="amount" id="totalCosts">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Ahorro Neto</h3>
+                        <div class="amount" id="netSavings">€0</div>
+                    </div>
+                </div>
+
+                <!-- Comparison Cards -->
+                <div class="info-grid" style="margin-top: 2rem;">
+                    <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <h3 style="color: white;">📊 Préstamo Actual</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.5rem 0;">💳 Cuota: <strong id="currentPaymentDisplay">€0</strong></li>
+                            <li style="margin: 0.5rem 0;">💵 Total a pagar: <strong id="currentTotalPayment">€0</strong></li>
+                            <li style="margin: 0.5rem 0;">📊 Intereses: <strong id="currentInterest">€0</strong></li>
+                            <li style="margin: 0.5rem 0;">⏱️ Plazo: <strong id="currentTerm">0 meses</strong></li>
+                        </ul>
+                    </div>
+                    <div class="info-card" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); color: white;">
+                        <h3 style="color: white;">🆕 Préstamo Refinanciado</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.5rem 0;">💳 Cuota: <strong id="newPaymentDisplay">€0</strong></li>
+                            <li style="margin: 0.5rem 0;">💵 Total a pagar: <strong id="newTotalPayment">€0</strong></li>
+                            <li style="margin: 0.5rem 0;">📊 Intereses: <strong id="newInterest">€0</strong></li>
+                            <li style="margin: 0.5rem 0;">⏱️ Plazo: <strong id="newTerm">0 meses</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Comparación de Pagos Totales</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="refinancingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Información Útil</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 ¿Cuándo Refinanciar?</h3>
+                        <ul>
+                            <li>Cuando la nueva tasa sea 1-2% menor</li>
+                            <li>Si tienes buen historial crediticio</li>
+                            <li>Cuando faltan varios años del préstamo</li>
+                            <li>Si los costos son razonables</li>
+                            <li>Para reducir cuotas mensuales</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 ¿Qué es el Punto de Equilibrio?</h3>
+                        <ul>
+                            <li>Meses necesarios para recuperar costos</li>
+                            <li>Divide costos entre ahorro mensual</li>
+                            <li>Mientras menor, mejor</li>
+                            <li>Idealmente menos de 24 meses</li>
+                            <li>Factor clave en la decisión</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Factores a Considerar</h3>
+                        <ul>
+                            <li>Comisiones y gastos notariales</li>
+                            <li>Penalización por pago anticipado</li>
+                            <li>Tu situación financiera actual</li>
+                            <li>Tiempo que planeas quedarte</li>
+                            <li>Estabilidad de ingresos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Otras Calculadoras</h3>
+                <div class="related-grid">
+                    <a href="prestamo-personal.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Préstamo Personal</h4>
+                        <p>Calcula préstamos personales</p>
+                    </a>
+                    <a href="auto.html" class="related-card">
+                        <span class="icon">🚗</span>
+                        <h4>Préstamo Auto</h4>
+                        <p>Financiación de vehículos</p>
+                    </a>
+                    <a href="consolidacion.html" class="related-card">
+                        <span class="icon">📊</span>
+                        <h4>Consolidación</h4>
+                        <p>Unifica tus deudas</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Calculadoras financieras gratuitas para tomar mejores decisiones con tu dinero.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculadoras</h4>
+                    <ul>
+                        <li><a href="prestamo-personal.html">Préstamo Personal</a></li>
+                        <li><a href="auto.html">Préstamo Auto</a></li>
+                        <li><a href="refinanciacion.html">Refinanciación</a></li>
+                        <li><a href="consolidacion.html">Consolidación</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="refinanciacion.js"></script>
+    <script src="cookie-consent.js"></script>
+</body>
+</html>

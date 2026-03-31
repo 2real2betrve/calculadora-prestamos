@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de préstamos para auto/coche. Calcula cuotas mensuales, intereses y tabla de amortización para tu vehículo.">
+    <meta name="keywords" content="calculadora préstamo coche, préstamo auto, financiación vehículo, cuota mensual auto, calculadora financiación coche">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Préstamo para Auto/Coche - CalcPrestamo">
+    <meta property="og:description" content="Calcula el préstamo de tu vehículo con tabla de amortización completa.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Préstamo para Auto - CalcPrestamo">
+    
+    <title>Calculadora de Préstamo para Auto/Coche | CalcPrestamo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de Préstamos para Auto/Coche",
+      "description": "Calcula tu cuota mensual, tabla de amortización e intereses totales para préstamos de auto",
+      "url": "https://tudominio.online/auto.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://tudominio.online/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadora Préstamo Auto",
+        "item": "https://tudominio.online/auto.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="prestamo-personal.html">Calculadoras</a>
+                <a href="about.html">Acerca de</a>
+                <a href="contact.html">Contacto</a>
+                <div class="language-switcher">
+                    <button class="lang-btn lang-active" onclick="window.location.href='auto.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn" onclick="window.location.href='en/auto-loan.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>→</span>
+                <span>Calculadora Préstamo Auto</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>🚗 Calculadora de Préstamo para Auto</h2>
+                <p>Calcula la financiación de tu vehículo con tabla de amortización completa</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Financiación de Vehículo</h3>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="vehiclePrice">💵 Precio del Vehículo (€)</label>
+                        <input type="number" id="vehiclePrice" placeholder="25000" value="25000" min="0" step="100">
+                        <small>Precio total del auto/coche</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="downPayment">💳 Entrada/Enganche (€)</label>
+                        <input type="number" id="downPayment" placeholder="5000" value="5000" min="0" step="100">
+                        <small>Cantidad que pagarás de entrada</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="downPaymentPercent">O bien, entrada en % del precio</label>
+                        <input type="number" id="downPaymentPercent" placeholder="20" min="0" max="100" step="1">
+                        <small>Ingresa % para calcular entrada automáticamente</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interestRate">📊 Tasa de Interés Anual (%)</label>
+                        <input type="number" id="interestRate" placeholder="7.5" value="7.5" min="0" step="0.1">
+                        <small>Tasa de interés anual del préstamo</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loanMonths">⏱️ Plazo (meses)</label>
+                        <input type="number" id="loanMonths" placeholder="60" value="60" min="1" step="1">
+                        <small>Duración del préstamo en meses</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="residualValue">🔄 Valor Residual (opcional, %)</label>
+                        <input type="number" id="residualValue" placeholder="0" value="0" min="0" max="100" step="1">
+                        <small>% del precio que quedará al final (0 si no aplica)</small>
+                    </div>
+
+                    <button onclick="calculateAuto()" class="btn-calculate">🚗 Calcular Financiación</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Resultados</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Monto a Financiar</h3>
+                        <div class="amount" id="loanAmount">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Cuota Mensual</h3>
+                        <div class="amount" id="monthlyPayment">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total a Pagar</h3>
+                        <div class="amount" id="totalPayment">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Intereses</h3>
+                        <div class="amount" id="totalInterest">€0</div>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Distribución del Pago</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="autoChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Amortization Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>📋 Tabla de Amortización</h3>
+                        <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="amortization-table" id="amortizationTable">
+                            <thead>
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Cuota</th>
+                                    <th>Capital</th>
+                                    <th>Intereses</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Información Útil</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 Consejos para Préstamos de Auto</h3>
+                        <ul>
+                            <li>Da la mayor entrada posible (20-30%)</li>
+                            <li>Compara tasas de varios bancos</li>
+                            <li>Considera el valor de reventa</li>
+                            <li>No excedas 4-5 años de plazo</li>
+                            <li>Incluye seguro en tu presupuesto</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 ¿Qué es el Valor Residual?</h3>
+                        <ul>
+                            <li>Valor estimado al final del préstamo</li>
+                            <li>Común en leasing o financiamiento</li>
+                            <li>Reduce la cuota mensual</li>
+                            <li>Debes pagar o devolver al final</li>
+                            <li>Típicamente 20-40% del precio</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Factores a Considerar</h3>
+                        <ul>
+                            <li>Tasa de interés competitiva</li>
+                            <li>Plazo adecuado a tu presupuesto</li>
+                            <li>Costos de mantenimiento</li>
+                            <li>Depreciación del vehículo</li>
+                            <li>Gastos adicionales (seguro, impuestos)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Otras Calculadoras</h3>
+                <div class="related-grid">
+                    <a href="prestamo-personal.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Préstamo Personal</h4>
+                        <p>Calcula préstamos e hipotecas</p>
+                    </a>
+                    <a href="consolidacion.html" class="related-card">
+                        <span class="icon">📊</span>
+                        <h4>Consolidación</h4>
+                        <p>Unifica tus deudas</p>
+                    </a>
+                    <a href="refinanciacion.html" class="related-card">
+                        <span class="icon">🔄</span>
+                        <h4>Refinanciación</h4>
+                        <p>Mejora tu préstamo actual</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Calculadoras financieras gratuitas para tomar mejores decisiones con tu dinero.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculadoras</h4>
+                    <ul>
+                        <li><a href="prestamo-personal.html">Préstamo Personal</a></li>
+                        <li><a href="auto.html">Préstamo Auto</a></li>
+                        <li><a href="consolidacion.html">Consolidación</a></li>
+                        <li><a href="ahorro.html">Ahorro</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auto.js"></script>
+    <script src="cookie-consent.js"></script>
+</body>
+</html>

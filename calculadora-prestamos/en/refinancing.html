@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loan Refinancing Calculator. Compare your current loan vs refinanced and discover if it's worth it.">
+    <meta name="keywords" content="refinancing calculator, refinance loan, compare loans, save interest, break-even point">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Loan Refinancing Calculator - CalcPrestamo">
+    <meta property="og:description" content="Compare your current loan vs refinanced to know if it's worth it.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loan Refinancing Calculator - CalcPrestamo">
+    
+    <title>Loan Refinancing Calculator | CalcPrestamo</title>
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Mortgage Refinancing Calculator",
+      "description": "Calculate if refinancing your mortgage is worth it and how much you can save monthly",
+      "url": "https://tudominio.online/en/refinancing.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tudominio.online/en/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Refinancing Calculator",
+        "item": "https://tudominio.online/en/refinancing.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="../en/index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="../en/index.html">Home</a>
+                <a href="../en/personal-loan.html">Calculators</a>
+                <a href="../en/about.html">About</a>
+                <a href="../en/contact.html">Contact</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" onclick="window.location.href='../refinanciacion.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn lang-active" onclick="window.location.href='refinancing.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../en/index.html">Home</a>
+                <span>→</span>
+                <span>Refinancing Calculator</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>🔄 Loan Refinancing Calculator</h2>
+                <p>Compare your current loan vs refinanced and discover if it's worth it</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Loan Comparison</h3>
+                
+                <div class="calculator-form">
+                    <h4 style="color: #667eea; margin-bottom: 1rem;">📊 Current Loan</h4>
+                    
+                    <div class="form-group">
+                        <label for="currentBalance">💵 Current Balance ($)</label>
+                        <input type="number" id="currentBalance" placeholder="30000" value="30000" min="0" step="100">
+                        <small>Amount you still owe</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentRate">📊 Current Rate (%)</label>
+                        <input type="number" id="currentRate" placeholder="8.5" value="8.5" min="0" step="0.1">
+                        <small>Current interest rate</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remainingMonths">⏱️ Remaining Months</label>
+                        <input type="number" id="remainingMonths" placeholder="48" value="48" min="1" step="1">
+                        <small>Months left to finish</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentPayment">💳 Current Monthly Payment ($)</label>
+                        <input type="number" id="currentPayment" placeholder="750" value="750" min="0" step="10">
+                        <small>What you currently pay</small>
+                    </div>
+
+                    <hr style="margin: 2rem 0; border: none; border-top: 2px solid #e2e8f0;">
+
+                    <h4 style="color: #48bb78; margin-bottom: 1rem;">🆕 Refinanced Loan</h4>
+
+                    <div class="form-group">
+                        <label for="newRate">📊 New Rate (%)</label>
+                        <input type="number" id="newRate" placeholder="6.5" value="6.5" min="0" step="0.1">
+                        <small>New loan interest rate</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newMonths">⏱️ New Term (months)</label>
+                        <input type="number" id="newMonths" placeholder="60" value="60" min="1" step="1">
+                        <small>Duration of new loan</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="refinancingCosts">💰 Refinancing Costs ($)</label>
+                        <input type="number" id="refinancingCosts" placeholder="500" value="500" min="0" step="50">
+                        <small>Fees and processing costs</small>
+                    </div>
+
+                    <button onclick="calculateRefinancing()" class="btn-calculate">🔄 Compare Loans</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Comparison Results</h3>
+                
+                <!-- Recommendation Alert -->
+                <div id="recommendationAlert" class="alert-box" style="display: none;">
+                    <strong id="recommendationTitle"></strong> <span id="recommendationMessage"></span>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Monthly Savings</h3>
+                        <div class="amount" id="monthlySavings">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Savings</h3>
+                        <div class="amount" id="totalSavings">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Break-Even Point</h3>
+                        <div class="amount" id="breakEvenMonths">0 months</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>New Payment</h3>
+                        <div class="amount" id="newPayment">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Refinancing Costs</h3>
+                        <div class="amount" id="totalCosts">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Net Savings</h3>
+                        <div class="amount" id="netSavings">$0</div>
+                    </div>
+                </div>
+
+                <!-- Comparison Cards -->
+                <div class="info-grid" style="margin-top: 2rem;">
+                    <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <h3 style="color: white;">📊 Current Loan</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.5rem 0;">💳 Payment: <strong id="currentPaymentDisplay">$0</strong></li>
+                            <li style="margin: 0.5rem 0;">💵 Total to pay: <strong id="currentTotalPayment">$0</strong></li>
+                            <li style="margin: 0.5rem 0;">📊 Interest: <strong id="currentInterest">$0</strong></li>
+                            <li style="margin: 0.5rem 0;">⏱️ Term: <strong id="currentTerm">0 months</strong></li>
+                        </ul>
+                    </div>
+                    <div class="info-card" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); color: white;">
+                        <h3 style="color: white;">🆕 Refinanced Loan</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.5rem 0;">💳 Payment: <strong id="newPaymentDisplay">$0</strong></li>
+                            <li style="margin: 0.5rem 0;">💵 Total to pay: <strong id="newTotalPayment">$0</strong></li>
+                            <li style="margin: 0.5rem 0;">📊 Interest: <strong id="newInterest">$0</strong></li>
+                            <li style="margin: 0.5rem 0;">⏱️ Term: <strong id="newTerm">0 months</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Total Payment Comparison</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="refinancingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Useful Information</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 When to Refinance?</h3>
+                        <ul>
+                            <li>When new rate is 1-2% lower</li>
+                            <li>If you have good credit history</li>
+                            <li>When several years remain on loan</li>
+                            <li>If costs are reasonable</li>
+                            <li>To reduce monthly payments</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 What is Break-Even Point?</h3>
+                        <ul>
+                            <li>Months needed to recover costs</li>
+                            <li>Divide costs by monthly savings</li>
+                            <li>Lower is better</li>
+                            <li>Ideally less than 24 months</li>
+                            <li>Key factor in decision</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Important Considerations</h3>
+                        <ul>
+                            <li>Fees and notary costs</li>
+                            <li>Prepayment penalty</li>
+                            <li>Your current financial situation</li>
+                            <li>Time you plan to stay</li>
+                            <li>Income stability</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Other Calculators</h3>
+                <div class="related-grid">
+                    <a href="personal-loan.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Personal Loan</h4>
+                        <p>Calculate personal loans</p>
+                    </a>
+                    <a href="auto-loan.html" class="related-card">
+                        <span class="icon">🚗</span>
+                        <h4>Auto Loan</h4>
+                        <p>Vehicle financing</p>
+                    </a>
+                    <a href="consolidation.html" class="related-card">
+                        <span class="icon">📊</span>
+                        <h4>Consolidation</h4>
+                        <p>Combine your debts</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Free financial calculators to make better decisions with your money.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="../en/index.html">Home</a></li>
+                        <li><a href="../en/about.html">About</a></li>
+                        <li><a href="../en/contact.html">Contact</a></li>
+                        <li><a href="../en/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="personal-loan.html">Personal Loan</a></li>
+                        <li><a href="auto-loan.html">Auto Loan</a></li>
+                        <li><a href="refinancing.html">Refinancing</a></li>
+                        <li><a href="consolidation.html">Consolidation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="refinancing.js"></script>
+    <script src="../cookie-consent.js"></script>
+</body>
+</html>
