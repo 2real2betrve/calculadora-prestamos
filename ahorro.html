@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de ahorro con interés compuesto. Calcula cuánto dinero acumularás con aportaciones mensuales y visualiza tu meta de ahorro.">
+    <meta name="keywords" content="calculadora ahorro, interés compuesto, ahorro mensual, meta ahorro, plan de ahorro">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Ahorro - CalcPrestamo">
+    <meta property="og:description" content="Calcula tu ahorro con interés compuesto y aportaciones mensuales.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de Ahorro - CalcPrestamo">
+    
+    <title>Calculadora de Ahorro | CalcPrestamo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de Ahorro e Interés Compuesto",
+      "description": "Calcula el crecimiento de tus ahorros con interés compuesto y aportaciones periódicas",
+      "url": "https://tudominio.online/ahorro.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://tudominio.online/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadora de Ahorro",
+        "item": "https://tudominio.online/ahorro.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="prestamo-personal.html">Calculadoras</a>
+                <a href="about.html">Acerca de</a>
+                <a href="contact.html">Contacto</a>
+                <div class="language-switcher">
+                    <button class="lang-btn lang-active" onclick="window.location.href='ahorro.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn" onclick="window.location.href='en/savings.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>→</span>
+                <span>Calculadora de Ahorro</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>💰 Calculadora de Ahorro</h2>
+                <p>Calcula tu ahorro futuro con interés compuesto y aportaciones mensuales</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Plan de Ahorro</h3>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="initialAmount">💵 Capital Inicial (€)</label>
+                        <input type="number" id="initialAmount" placeholder="1000" value="1000" min="0" step="100">
+                        <small>Cantidad con la que empiezas</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyContribution">📅 Aportación Mensual (€)</label>
+                        <input type="number" id="monthlyContribution" placeholder="200" value="200" min="0" step="10">
+                        <small>Cantidad que ahorrarás cada mes</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interestRate">📊 Tasa de Interés Anual (%)</label>
+                        <input type="number" id="interestRate" placeholder="3.5" value="3.5" min="0" step="0.1">
+                        <small>Rendimiento anual esperado</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="years">⏱️ Período (años)</label>
+                        <input type="number" id="years" placeholder="10" value="10" min="1" max="50" step="1">
+                        <small>Tiempo que mantendrás el ahorro</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="savingsGoal">🎯 Meta de Ahorro (opcional, €)</label>
+                        <input type="number" id="savingsGoal" placeholder="30000" min="0" step="1000">
+                        <small>¿Cuánto dinero quieres acumular?</small>
+                    </div>
+
+                    <button onclick="calculateSavings()" class="btn-calculate">💰 Calcular Ahorro</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Resultados</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Total Ahorrado</h3>
+                        <div class="amount" id="totalSaved">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Aportado</h3>
+                        <div class="amount" id="totalContributed">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Intereses Ganados</h3>
+                        <div class="amount" id="totalInterest">€0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Rentabilidad Total</h3>
+                        <div class="amount" id="totalReturn">0%</div>
+                    </div>
+                </div>
+
+                <!-- Goal Alert -->
+                <div id="goalAlert"></div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Crecimiento del Ahorro</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="savingsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Growth Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>📋 Tabla de Crecimiento Anual</h3>
+                        <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="amortization-table" id="savingsTable">
+                            <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Aportado</th>
+                                    <th>Intereses</th>
+                                    <th>Total Acumulado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Información Útil</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 Beneficios del Ahorro Regular</h3>
+                        <ul>
+                            <li>Construye patrimonio con el tiempo</li>
+                            <li>Aprovecha el interés compuesto</li>
+                            <li>Crea un colchón financiero</li>
+                            <li>Logra metas a largo plazo</li>
+                            <li>Disciplina financiera</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 ¿Qué es el Interés Compuesto?</h3>
+                        <ul>
+                            <li>Interés sobre el capital e intereses</li>
+                            <li>Efecto multiplicador con el tiempo</li>
+                            <li>La octava maravilla del mundo</li>
+                            <li>Crece exponencialmente</li>
+                            <li>Mejor cuanto más tiempo ahorres</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Consejos de Ahorro</h3>
+                        <ul>
+                            <li>Empieza lo antes posible</li>
+                            <li>Ahorra de forma automática</li>
+                            <li>Incrementa aportaciones gradualmente</li>
+                            <li>Diversifica tus inversiones</li>
+                            <li>Mantén tu plan a largo plazo</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Otras Calculadoras</h3>
+                <div class="related-grid">
+                    <a href="inversion.html" class="related-card">
+                        <span class="icon">📈</span>
+                        <h4>Inversión ROI</h4>
+                        <p>Calcula retorno de inversión</p>
+                    </a>
+                    <a href="prestamo-personal.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Préstamo Personal</h4>
+                        <p>Calcula préstamos</p>
+                    </a>
+                    <a href="negocio.html" class="related-card">
+                        <span class="icon">💼</span>
+                        <h4>Préstamo Negocio</h4>
+                        <p>Financia tu empresa</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Calculadoras financieras gratuitas para tomar mejores decisiones con tu dinero.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculadoras</h4>
+                    <ul>
+                        <li><a href="prestamo-personal.html">Préstamo Personal</a></li>
+                        <li><a href="auto.html">Préstamo Auto</a></li>
+                        <li><a href="ahorro.html">Ahorro</a></li>
+                        <li><a href="inversion.html">Inversión</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="ahorro.js"></script>
+    <script src="cookie-consent.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Business Loan Calculator with cashflow analysis. Calculate payments and business payment capacity.">
+    <meta name="keywords" content="business loan calculator, business financing, cashflow analysis, loan payment calculator, business loan">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Business Loan Calculator - CalcPrestamo">
+    <meta property="og:description" content="Calculate your business loan with complete cashflow analysis.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Business Loan Calculator - CalcPrestamo">
+    
+    <title>Business Loan Calculator | CalcPrestamo</title>
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Business Loan Calculator",
+      "description": "Calculate business financing, monthly payments and total costs for business loans",
+      "url": "https://tudominio.online/en/business-loan.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tudominio.online/en/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Business Loan Calculator",
+        "item": "https://tudominio.online/en/business-loan.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="../en/index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="../en/index.html">Home</a>
+                <a href="../en/personal-loan.html">Calculators</a>
+                <a href="../en/about.html">About</a>
+                <a href="../en/contact.html">Contact</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" onclick="window.location.href='../negocio.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn lang-active" onclick="window.location.href='business-loan.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../en/index.html">Home</a>
+                <span>→</span>
+                <span>Business Loan Calculator</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>💼 Business Loan Calculator</h2>
+                <p>Calculate your business loan with complete cashflow analysis</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Business Financing</h3>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="loanAmount">💵 Loan Amount ($)</label>
+                        <input type="number" id="loanAmount" placeholder="50000" value="50000" min="0" step="1000">
+                        <small>Total amount to borrow</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interestRate">📊 Annual Interest Rate (%)</label>
+                        <input type="number" id="interestRate" placeholder="6.5" value="6.5" min="0" step="0.1">
+                        <small>Annual interest rate on loan</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loanMonths">⏱️ Term (months)</label>
+                        <input type="number" id="loanMonths" placeholder="60" value="60" min="1" step="1">
+                        <small>Loan duration in months</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyIncome">💰 Monthly Business Income ($)</label>
+                        <input type="number" id="monthlyIncome" placeholder="15000" value="15000" min="0" step="100">
+                        <small>Average monthly income</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyExpenses">📉 Monthly Business Expenses ($)</label>
+                        <input type="number" id="monthlyExpenses" placeholder="10000" value="10000" min="0" step="100">
+                        <small>Monthly operating expenses (excluding loan)</small>
+                    </div>
+
+                    <button onclick="calculateBusiness()" class="btn-calculate">💼 Calculate Loan</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Results</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Monthly Payment</h3>
+                        <div class="amount" id="monthlyPayment">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Cashflow</h3>
+                        <div class="amount" id="cashflow">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>% Income to Loan</h3>
+                        <div class="amount" id="incomePercent">0%</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Payment</h3>
+                        <div class="amount" id="totalPayment">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Interest</h3>
+                        <div class="amount" id="totalInterest">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Payment Capacity</h3>
+                        <div class="amount" id="paymentCapacity">-</div>
+                    </div>
+                </div>
+
+                <!-- Cashflow Alert -->
+                <div id="cashflowAlert" class="alert-box" style="display: none;">
+                    <strong>⚠️ Warning:</strong> <span id="alertMessage"></span>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Cashflow Projection (12 months)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="businessChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Amortization Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>📋 Amortization Schedule</h3>
+                        <button onclick="window.print()" class="btn-print">🖨️ Print</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="amortization-table" id="amortizationTable">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Payment</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Useful Information</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 Business Loan Tips</h3>
+                        <ul>
+                            <li>Maintain positive cashflow at all times</li>
+                            <li>Don't commit more than 30% of income</li>
+                            <li>Have an emergency business fund</li>
+                            <li>Compare rates from different lenders</li>
+                            <li>Consider term based on your capacity</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 What is Cashflow?</h3>
+                        <ul>
+                            <li>Money available after expenses</li>
+                            <li>Income - Expenses - Loan Payment</li>
+                            <li>Must always be positive</li>
+                            <li>Indicates business financial health</li>
+                            <li>Critical for decision making</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Important Considerations</h3>
+                        <ul>
+                            <li>Stability of monthly income</li>
+                            <li>Business seasonality</li>
+                            <li>Variable and unexpected expenses</li>
+                            <li>Growth capacity</li>
+                            <li>Bank collateral requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Other Calculators</h3>
+                <div class="related-grid">
+                    <a href="personal-loan.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Personal Loan</h4>
+                        <p>Calculate personal loans</p>
+                    </a>
+                    <a href="auto-loan.html" class="related-card">
+                        <span class="icon">🚗</span>
+                        <h4>Auto Loan</h4>
+                        <p>Vehicle financing</p>
+                    </a>
+                    <a href="refinancing.html" class="related-card">
+                        <span class="icon">🔄</span>
+                        <h4>Refinancing</h4>
+                        <p>Improve your current loan</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Free financial calculators to make better decisions with your money.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="../en/index.html">Home</a></li>
+                        <li><a href="../en/about.html">About</a></li>
+                        <li><a href="../en/contact.html">Contact</a></li>
+                        <li><a href="../en/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="personal-loan.html">Personal Loan</a></li>
+                        <li><a href="auto-loan.html">Auto Loan</a></li>
+                        <li><a href="business-loan.html">Business Loan</a></li>
+                        <li><a href="consolidation.html">Consolidation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="business-loan.js"></script>
+    <script src="../cookie-consent.js"></script>
+</body>
+</html>

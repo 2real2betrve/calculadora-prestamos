@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Debt consolidation calculator. Compare your current situation vs consolidated and save money by unifying your loans.">
+    <meta name="keywords" content="debt consolidation calculator, consolidate loans, debt consolidation, consolidation savings, refinance debts">
+    <meta name="author" content="CalcPrestamo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Debt Consolidation Calculator - CalcPrestamo">
+    <meta property="og:description" content="Calculate how much you can save by consolidating your debts into one loan.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Debt Consolidation Calculator - CalcPrestamo">
+    
+    <title>Debt Consolidation Calculator | CalcPrestamo</title>
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029981012128379"
+     crossorigin="anonymous"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Debt Consolidation Calculator",
+      "description": "Calculate how to consolidate multiple debts into a single loan with reduced monthly payment",
+      "url": "https://tudominio.online/en/debt-consolidation.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tudominio.online/en/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Debt Consolidation Calculator",
+        "item": "https://tudominio.online/en/debt-consolidation.html"
+      }]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">💰 CalcPrestamo</a></h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="personal-loan.html">Calculators</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" onclick="window.location.href='../consolidacion.html'">
+                        <span>🇪🇸</span>
+                    </button>
+                    <button class="lang-btn lang-active" onclick="window.location.href='debt-consolidation.html'">
+                        <span>🇬🇧</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>→</span>
+                <span>Debt Consolidation Calculator</span>
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2>📊 Debt Consolidation Calculator</h2>
+                <p>Compare your current situation vs consolidated and discover how much you can save</p>
+            </section>
+
+            <!-- AdSense Top -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="1234567890"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="calculator-card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Your Current Debts</h3>
+                
+                <div class="calculator-form">
+                    <div class="debt-list" id="debtList">
+                        <!-- Debts will be added dynamically here -->
+                    </div>
+
+                    <button onclick="addDebt()" class="add-debt-btn">➕ Add Debt</button>
+
+                    <hr style="margin: 30px 0; border: 1px solid #e2e8f0;">
+
+                    <h4 style="margin-bottom: 15px; font-size: 1.4rem;">New Consolidated Loan</h4>
+
+                    <div class="form-group">
+                        <label for="newRate">📊 New Annual Interest Rate (%)</label>
+                        <input type="number" id="newRate" placeholder="8.5" value="8.5" min="0" step="0.1">
+                        <small>Interest rate for consolidated loan</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newTerm">⏱️ New Term (months)</label>
+                        <input type="number" id="newTerm" placeholder="60" value="60" min="1" step="1">
+                        <small>Duration of the new loan</small>
+                    </div>
+
+                    <button onclick="calculateConsolidation()" class="btn-calculate">📊 Calculate Consolidation</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">📊 Comparison</h3>
+                
+                <!-- Comparison Cards -->
+                <div class="comparison-grid">
+                    <div class="comparison-card before">
+                        <h4>❌ Current Situation</h4>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total Monthly Payment:</span>
+                            <span class="comparison-value" id="beforeMonthly">$0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total to Pay:</span>
+                            <span class="comparison-value" id="beforeTotal">$0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total Interest:</span>
+                            <span class="comparison-value" id="beforeInterest">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card after winner">
+                        <h4>✅ After Consolidation</h4>
+                        <div class="comparison-item">
+                            <span class="comparison-label">New Monthly Payment:</span>
+                            <span class="comparison-value" id="afterMonthly">$0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total to Pay:</span>
+                            <span class="comparison-value" id="afterTotal">$0</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="comparison-label">Total Interest:</span>
+                            <span class="comparison-value" id="afterInterest">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Savings Alert -->
+                <div id="savingsAlert"></div>
+
+                <!-- Savings Cards -->
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Monthly Savings</h3>
+                        <div class="amount" id="monthlySavings">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Savings</h3>
+                        <div class="amount" id="totalSavings">$0</div>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Visual Comparison</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="consolidationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Amortization Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>📋 Amortization Schedule (Consolidated)</h3>
+                        <button onclick="window.print()" class="btn-print">🖨️ Print</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="amortization-table" id="amortizationTable">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Payment</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Bottom -->
+            <div class="adsense-container">
+                <div class="adsense-placeholder">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9029981012128379"
+                         data-ad-slot="9876543210"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">💡 Useful Information</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 What is Debt Consolidation?</h3>
+                        <ul>
+                            <li>Combines multiple debts into one</li>
+                            <li>Single monthly payment</li>
+                            <li>Usually lower interest rate</li>
+                            <li>Simplifies financial management</li>
+                            <li>Can reduce monthly payment</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>✅ Benefits of Consolidating</h3>
+                        <ul>
+                            <li>Save on interest</li>
+                            <li>Lower monthly payment</li>
+                            <li>Single creditor</li>
+                            <li>Better organization</li>
+                            <li>Less financial stress</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>⚠️ Important Considerations</h3>
+                        <ul>
+                            <li>Check origination fees</li>
+                            <li>Compare rates from multiple lenders</li>
+                            <li>Evaluate total term length</li>
+                            <li>Don't accumulate new debt</li>
+                            <li>Consider your payment ability</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <h3>🔗 Other Calculators</h3>
+                <div class="related-grid">
+                    <a href="personal-loan.html" class="related-card">
+                        <span class="icon">💳</span>
+                        <h4>Personal Loan</h4>
+                        <p>Calculate loans and mortgages</p>
+                    </a>
+                    <a href="refinancing.html" class="related-card">
+                        <span class="icon">🔄</span>
+                        <h4>Refinancing</h4>
+                        <p>Improve your current loan</p>
+                    </a>
+                    <a href="business-loan.html" class="related-card">
+                        <span class="icon">💼</span>
+                        <h4>Business Loan</h4>
+                        <p>Finance your company</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💰 CalcPrestamo</h4>
+                    <p>Free financial calculators to make better decisions with your money.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="personal-loan.html">Personal Loan</a></li>
+                        <li><a href="auto-loan.html">Auto Loan</a></li>
+                        <li><a href="debt-consolidation.html">Debt Consolidation</a></li>
+                        <li><a href="savings.html">Savings</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CalcPrestamo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="debt-consolidation.js"></script>
+    <script src="../cookie-consent.js"></script>
+</body>
+</html>
