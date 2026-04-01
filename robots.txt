@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://tudominio.online/sitemap.xml
+Sitemap: https://calcprestamos.me/sitemap.xml
 
 # Crawl delay (optional)
 Crawl-delay: 5
